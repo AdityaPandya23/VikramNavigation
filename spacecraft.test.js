@@ -1,3 +1,3 @@
-test('The test is now running', () => {
-  expect().toBe(1);
+test('The test suite is now running', () => {
+  expect(1).toBe(1);
 });
