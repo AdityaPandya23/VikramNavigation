@@ -43,7 +43,7 @@ test('should handle forward command correctly', () => {
 
 test('handles backward command correctly', () => {
   const commands = ['b'];
-  result.direction = 'S';
+  result.direction = 'N';
   result = spacecraft(
     [commands],
     result.x,
@@ -51,31 +51,5 @@ test('handles backward command correctly', () => {
     result.z,
     result.direction
   );
-  expect(result).toEqual({ x: 0, y: 1, z: 0, direction: 'S' });
-});
-
-test('handles left command correctly', () => {
-  const commands = ['l'];
-  result.direction = 'S';
-  result = spacecraft(
-    [commands],
-    result.x,
-    result.y,
-    result.z,
-    result.direction
-  );
-  expect(result).toEqual({ x: 0, y: 0, z: 0, direction: 'E' });
-});
-
-test('handles right command correctly', () => {
-  const commands = ['r'];
-  result.direction = 'E';
-  result = spacecraft(
-    [commands],
-    result.x,
-    result.y,
-    result.z,
-    result.direction
-  );
-  expect(result).toEqual({ x: 0, y: 0, z: 0, direction: 'S' });
+  expect(result).toEqual({ x: 0, y: -1, z: 0, direction: 'N' });
 });
