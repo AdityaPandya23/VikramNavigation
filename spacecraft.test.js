@@ -1,20 +1,31 @@
 const spacecraft = require('./spacecraft');
 
-const commands = [];
-const startingPosition = {};
-const initialDirection = '';
-const result = spacecraft(
-  commands,
-  startingPosition.x,
-  startingPosition.y,
-  startingPosition.z,
-  initialDirection
-);
+test('should handle empty commands correctly', () => {
+  const commands = [];
+  const startingPosition = { x: 0, y: 0, z: 0 };
+  const initialDirection = 'N';
 
-test('passing empty input should should give nothing', () => {
-  expect(result).toEqual();
+  const result = spacecraft(
+    commands,
+    startingPosition.x,
+    startingPosition.y,
+    startingPosition.z,
+    initialDirection
+  );
+  expect(result).toEqual({ x: 0, y: 0, z: 0, direction: 'N' });
 });
 
-test('should give response for final position and direction', () => {
+test('should handle forward command correctly', () => {
+  const commands = ['f'];
+  const startingPosition = { x: 0, y: 0, z: 0 };
+  const initialDirection = 'N';
+
+  const result = spacecraft(
+    commands,
+    startingPosition.x,
+    startingPosition.y,
+    startingPosition.z,
+    initialDirection
+  );
   expect(result).toEqual({ x: 0, y: 1, z: 0, direction: 'N' });
 });
