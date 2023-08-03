@@ -1,23 +1,46 @@
 function spacecraft(commands, x, y, z, direction) {
-  if (x == null || y == null || z == null || direction == null)
+  const FORWARD = 'f';
+  const BACK = 'b';
+  const LEFT = 'l';
+  const RIGHT = 'r';
+  const position = { x, y, z, direction };
+
+  if (
+    position.x == null ||
+    position.y == null ||
+    position.z == null ||
+    position.direction == null
+  )
     return 'There is error in input';
-  else if (commands.length == 0) return { x, y, z, direction };
+  else if (commands.length == 0) return position;
   else if (commands == 'f') {
     // consider E,N,U value as 1 and W, S, D value as -1
     if (direction == 'N') return { x, y: y + 1, z, direction };
-    else if (direction == 'S') return { x, y: y - 1, z, direction };
-    else if (direction == 'E') return { x: x + 1, y, z, direction };
-    else if (direction == 'W') return { x: x - 1, y, z, direction };
-    else if (direction == 'U') return { x, y, z: z + 1, direction };
-    else if (direction == 'D') return { x, y, z: z - 1, direction };
+    else if (direction == 'S') return { ...position, y: y - 1 };
+    else if (direction == 'E') return { ...position, x: x + 1 };
+    else if (direction == 'W') return { ...position, x: x - 1 };
+    else if (direction == 'U') return { ...position, z: z + 1 };
+    else if (direction == 'D') return { ...position, z: z - 1 };
   } else if (commands == 'b') {
     // consider E,N,U value as 1 and W, S, D value as -1
-    if (direction == 'N') return { x, y: y - 1, z, direction };
-    else if (direction == 'S') return { x, y: y + 1, z, direction };
-    else if (direction == 'E') return { x: x - 1, y, z, direction };
-    else if (direction == 'W') return { x: x + 1, y, z, direction };
-    else if (direction == 'U') return { x, y, z: z - 1, direction };
-    else if (direction == 'D') return { x, y, z: z + 1, direction };
+    if (direction == 'N') return { x, y: y + 1, z, direction };
+    else if (direction == 'S') return { ...position, y: y + 1 };
+    else if (direction == 'E') return { ...position, x: x - 1 };
+    else if (direction == 'W') return { ...position, x: x + 1 };
+    else if (direction == 'U') return { ...position, z: z - 1 };
+    else if (direction == 'D') return { ...position, z: z + 1 };
+  } else if (commands == 'l') {
+    if (direction == 'N') return { ...position, direction: 'W' };
+    else if (direction == 'W') return { ...position, direction: 'S' };
+    else if (direction == 'S') return { ...position, direction: 'E' };
+    else return { ...position, direction: 'N' };
+  } else if (commands == 'r') {
+    if (direction == 'N') return { ...position, direction: 'E' };
+    else if (direction == 'E') return { ...position, direction: 'S' };
+    else if (direction == 'S') return { ...position, direction: 'W' };
+    else return { ...position, direction: 'N' };
   }
+
+  return position;
 }
 module.exports = spacecraft;
