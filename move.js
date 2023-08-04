@@ -13,7 +13,7 @@ function move(commands, x, y, z, direction, previousState) {
       previousState.dir = direction;
       return { ...position, direction: 'U' };
     }
-  } else {
+  } else if (commands == 'd') {
     if (previousState.dir) {
       if (previousState.dir == 'N') return { ...position, direction: 'S' };
       else if (previousState.dir == 'S') return { ...position, direction: 'N' };

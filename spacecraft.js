@@ -1,12 +1,11 @@
 const move = require('./move');
 const rotate = require('./rotate');
 
+//to store previous state when command is up or down.
+const prev = { dir: null };
+
 function spacecraft(commands, x, y, z, direction) {
   const position = { x, y, z, direction };
-
-  //to store previous state when command is up or down.
-  const prev = { dir: null };
-
   if (
     position.x == null ||
     position.y == null ||

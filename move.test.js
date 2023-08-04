@@ -45,16 +45,32 @@ test('handles up command with U,D direction correctly', () => {
   expect(result).toEqual({ x: 0, y: 0, z: 0, direction: 'S' });
 });
 
-test('handles down command correctly', () => {
+test('handles down command with N,S,E,W direction correctly', () => {
   const commands = ['d'];
-  result.direction = 'E';
+  result.direction = 'D';
+  previousState.dir = null;
   result = move(
     [commands],
     result.x,
     result.y,
     result.z,
     result.direction,
-    previousState.dir
+    previousState
   );
   expect(result).toEqual({ x: 0, y: 0, z: 0, direction: 'D' });
+});
+
+test('handles down command with U,D direction correctly', () => {
+  const commands = ['d'];
+  result.direction = 'D';
+  previousState.dir = 'S';
+  result = move(
+    [commands],
+    result.x,
+    result.y,
+    result.z,
+    result.direction,
+    previousState
+  );
+  expect(result).toEqual({ x: 0, y: 0, z: 0, direction: 'N' });
 });
