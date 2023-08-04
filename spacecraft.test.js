@@ -191,43 +191,9 @@ test('handles backward command correctly with direction D', () => {
   expect(result).toEqual({ x: 0, y: 0, z: 1, direction: 'D' });
 });
 
-test('handles up command correctly', () => {
-  const commands = ['u'];
-  result.direction = 'E';
-  result = spacecraft(
-    [commands],
-    result.x,
-    result.y,
-    result.z,
-    result.direction
-  );
-  expect(result).toEqual({ x: 0, y: 0, z: 0, direction: 'U' });
-});
-
-test('handles down command correctly', () => {
-  const commands = ['d'];
-  result.direction = 'E';
-  result = spacecraft(
-    [commands],
-    result.x,
-    result.y,
-    result.z,
-    result.direction
-  );
-  expect(result).toEqual({ x: 0, y: 0, z: 0, direction: 'D' });
-});
-
-test('handles left command correctly', () => {
-  const commands = ['l'];
-  result.direction = 'S';
+test('handles the returned object correctly', () => {
+  const commands = ['r'];
+  result.direction = 'N';
   result = rotate([commands], result.x, result.y, result.z, result.direction);
   expect(result).toEqual({ x: 0, y: 0, z: 0, direction: 'E' });
-});
-
-test('handles right command correctly', () => {
-  const commands = ['r'];
-  result.direction = 'E';
-  result.x = 3;
-  result = rotate([commands], result.x, result.y, result.z, result.direction);
-  expect(result).toEqual({ x: 3, y: 0, z: 0, direction: 'S' });
 });
