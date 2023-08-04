@@ -1,8 +1,7 @@
-const spacecraft = require('./spacecraft');
-
-const initialCoordinates = { x: 0, y: 0, z: 0, direction: 'N' };
+const spacecraft = require('./navigation/spacecraft');
 
 function vikram(commands, x, y, z, direction) {
+  const initialCoordinates = { x: 0, y: 0, z: 0, direction: 'N' };
   let currentCoordinates = { ...initialCoordinates };
 
   for (let i = 0; i < commands.length; i++) {
