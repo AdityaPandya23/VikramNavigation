@@ -25,7 +25,3 @@ The program supports the following functionalities:
 ## Authors
 
 - Aditya Pandya - [GitHub](https://github.com/AdityaPandya23)
-
-## Acknowledgments
-
-This project was built as a learning exercise using the MERN stack. Thank you to the creators of React, React-Bootstrap, and the other technologies used in this project.
