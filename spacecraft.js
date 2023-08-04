@@ -1,3 +1,4 @@
+const rotate = require('./rotate');
 function spacecraft(commands, x, y, z, direction) {
   const FORWARD = 'f';
   const BACK = 'b';
@@ -29,7 +30,12 @@ function spacecraft(commands, x, y, z, direction) {
     else if (direction == 'W') return { ...position, x: x + 1 };
     else if (direction == 'U') return { ...position, z: z - 1 };
     else if (direction == 'D') return { ...position, z: z + 1 };
-  }
+  } else if (commands == 'u') {
+    return { ...position, direction: 'U' };
+  } else if (commands == 'd') {
+    return { ...position, direction: 'D' };
+  } else if (commands == 'l') return rotate(commands, x, y, z, direction);
+  else if (commands == 'r') return rotate(commands, x, y, z, direction);
 
   return position;
 }
