@@ -1,9 +1,6 @@
 const move = require('./move');
 const rotate = require('./rotate');
 
-//to store previous state when command is up or down.
-const prev = { dir: null };
-
 function spacecraft(commands, x, y, z, direction) {
   const position = { x, y, z, direction };
   if (
@@ -33,9 +30,9 @@ function spacecraft(commands, x, y, z, direction) {
     else if (direction == 'D') return { ...position, z: z + 1 };
     else return position;
   } else if (commands == 'u') {
-    return move(commands, x, y, z, direction, prev);
+    return move(commands, x, y, z, direction);
   } else if (commands == 'd') {
-    return move(commands, x, y, z, direction, prev);
+    return move(commands, x, y, z, direction);
   } else if (commands == 'l') return rotate(commands, x, y, z, direction);
   else if (commands == 'r') return rotate(commands, x, y, z, direction);
 

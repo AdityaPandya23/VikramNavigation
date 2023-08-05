@@ -1,28 +1,34 @@
-function move(commands, x, y, z, direction, previousState) {
+let flag = 0;
+let previousdir = '';
+let previousmove = '';
+function move(commands, x, y, z, direction) {
   const position = { x, y, z, direction };
 
-  if (commands == 'u') {
-    if (previousState.dir) {
-      if (previousState.dir == 'N') return { ...position, direction: 'S' };
-      else if (previousState.dir == 'S') return { ...position, direction: 'N' };
-      else if (previousState.dir == 'E') return { ...position, direction: 'W' };
-      else if (previousState.dir == 'W') return { ...position, direction: 'E' };
-
-      previousState.dir = null;
+  if (flag) {
+    let previousState = previousdir;
+    previousdir = '';
+    flag = 0;
+    if (
+      (commands == 'u' && previousmove == 'U') ||
+      (commands == 'd' && previousmove == 'D')
+    ) {
+      previousmove = '';
+      if (previousState == 'N') return { ...position, direction: 'S' };
+      else if (previousState == 'S') return { ...position, direction: 'N' };
+      else if (previousState == 'E') return { ...position, direction: 'W' };
+      else if (previousState == 'W') return { ...position, direction: 'E' };
     } else {
-      previousState.dir = direction;
-      return { ...position, direction: 'U' };
+      direction = previousState;
+      return { ...position, direction };
     }
-  } else if (commands == 'd') {
-    if (previousState.dir) {
-      if (previousState.dir == 'N') return { ...position, direction: 'S' };
-      else if (previousState.dir == 'S') return { ...position, direction: 'N' };
-      else if (previousState.dir == 'E') return { ...position, direction: 'W' };
-      else if (previousState.dir == 'W') return { ...position, direction: 'E' };
-
-      previousState.dir = null;
+  } else {
+    previousdir = direction;
+    flag = 1;
+    if (commands == 'u') {
+      previousmove = 'U';
+      return { ...position, direction: 'U' };
     } else {
-      previousState.dir = direction;
+      previousmove = 'D';
       return { ...position, direction: 'D' };
     }
   }

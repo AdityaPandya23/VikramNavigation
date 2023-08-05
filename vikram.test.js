@@ -40,6 +40,18 @@ test('handles rotating right', () => {
   expect(result).toEqual({ x: 0, y: 0, z: 0, direction: 'W' });
 });
 
+test('handles turning up', () => {
+  const commands = ['u']; // Turn up
+  const result = vikram(commands, 0, 0, 0, 'N');
+  expect(result).toEqual({ x: 0, y: 0, z: 0, direction: 'U' });
+});
+
+test('handles turning down', () => {
+  const commands = ['d', 'd', 'u']; // Turn down thrice
+  const result = vikram(commands, 0, 0, 0, 'N');
+  expect(result).toEqual({ x: 0, y: 0, z: 0, direction: 'N' });
+});
+
 test('handles more than one command', () => {
   const commands = ['f', 'r', 'u', 'b', 'l'];
   result.direction = 'N';

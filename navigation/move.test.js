@@ -31,46 +31,22 @@ test('handles up command with N,S,E,W directions correctly', () => {
 });
 
 test('handles up command with U,D direction correctly', () => {
-  const commands = ['u'];
-  result.direction = 'U';
-  previousState.dir = 'N';
-  result = move(
-    [commands],
-    result.x,
-    result.y,
-    result.z,
-    result.direction,
-    previousState
-  );
-  expect(result).toEqual({ x: 0, y: 0, z: 0, direction: 'S' });
+  const commands = ['d'];
+  result.direction = 'E';
+  result = move([commands], result.x, result.y, result.z, result.direction);
+  expect(result).toEqual({ x: 0, y: 0, z: 0, direction: 'E' });
 });
 
 test('handles down command with N,S,E,W direction correctly', () => {
   const commands = ['d'];
-  result.direction = 'D';
-  previousState.dir = null;
-  result = move(
-    [commands],
-    result.x,
-    result.y,
-    result.z,
-    result.direction,
-    previousState
-  );
+  result.direction = 'S';
+  result = move([commands], result.x, result.y, result.z, result.direction);
   expect(result).toEqual({ x: 0, y: 0, z: 0, direction: 'D' });
 });
 
 test('handles down command with U,D direction correctly', () => {
   const commands = ['d'];
-  result.direction = 'D';
-  previousState.dir = 'S';
-  result = move(
-    [commands],
-    result.x,
-    result.y,
-    result.z,
-    result.direction,
-    previousState
-  );
+  result.direction = 'W';
+  result = move([commands], result.x, result.y, result.z, result.direction);
   expect(result).toEqual({ x: 0, y: 0, z: 0, direction: 'N' });
 });
